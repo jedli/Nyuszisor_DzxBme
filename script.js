@@ -122,8 +122,12 @@ document.getElementById("compareBtn").onclick=()=>{
   markCompare();
 };
 
-document.getElementById("revealBtn").onclick=()=>{
+document.getElementById("revealBtn").onclick=() => {
   document.getElementById("curtain").classList.add("open");
+};
+
+document.getElementById("resetBtn").onclick = () => {
+  location.reload();  // teljes oldalfrissítés, minden visszaáll
 };
 
 render();
