@@ -39,7 +39,7 @@ body
   height: 18px;
   border: 2px solid black;
   border-radius: 4px;
-  background: darkgreen;
+  background: white;
 }
 
 .compareBox.active {
@@ -63,7 +63,8 @@ body
 
 .bunny img
 {
-  width: min(14vw, 95px);
+  /*width: min(14vw, 95px);*/
+  width: 95px;
   user-select: none;
   -webkit-user-drag: none;
 }
