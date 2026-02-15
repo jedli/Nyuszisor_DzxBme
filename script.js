@@ -110,7 +110,7 @@ function markCompare() {
 document.getElementById("compareBtn").onclick=()=>{
   if(selected.length!==2 || animating) return;
   compareCount++;
-  document.getElementById("curtain").textContent = `Összehasonlítások: ${compareCount}`;
+  // document.getElementById("curtain").textContent = `Összehasonlítások: ${compareCount}`;
   let [a, b] = selected;
   if (a > b) [a, b] = [b, a];
   if(state[a].height > state[b].height){
