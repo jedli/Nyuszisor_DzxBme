@@ -51,7 +51,7 @@ body
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
-  height: 280px;
+  height: 290px;
   padding: 10px;
 }
 
@@ -64,7 +64,8 @@ body
 .bunny img
 {
   /*width: min(14vw, 95px);*/
-  width: 95px;
+  width: 90px;
+  height: 270px;
   user-select: none;
   -webkit-user-drag: none;
 }
@@ -97,7 +98,7 @@ body
   top: 0;
   left: 0;
   width: 100%;
-  height: 295px;
+  height: 305px;
 
   /* halvány, pasztell csíkos, átlátszatlan */
   background: repeating-linear-gradient(
