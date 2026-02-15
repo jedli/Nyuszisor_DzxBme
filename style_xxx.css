@@ -1,35 +1,21 @@
-html, body {
-  height: 100%;
-  overflow: hidden;
-}
-
 body
 {
   margin: 0;
   font-family: sans-serif;
   text-align: center;
   background: #f0f0f0;
-  height: 100%;
-  overflow: hidden;
 }
 
 #stage
 {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-
-  width: 550px;
-  height: 480px;
-
-  transform-origin: top center;
-  transform: translateX(-50%);
+  padding: 10px;
 }
 
 #screen
 {
   position: relative;
   width: 100%;
+  max-width: 550px;
   height: 380px;
   margin: auto;
   overflow: hidden;

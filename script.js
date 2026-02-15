@@ -127,3 +127,27 @@ document.getElementById("revealBtn").onclick=()=>{
 };
 
 render();
+
+function fitStage() {
+  const stage = document.getElementById("stage");
+
+  // reset scale a valós méréshez
+  stage.style.transform = "scale(1)";
+
+  const stageWidth = stage.offsetWidth;
+  const stageHeight = stage.offsetHeight;
+
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+
+  const scaleX = viewportWidth / stageWidth;
+  const scaleY = viewportHeight / stageHeight;
+
+  const scale = Math.min(scaleX, scaleY, 1);
+
+  stage.style.transform = `translateX(-50%) scale(${scale})`;
+}
+
+window.addEventListener("resize", fitStage);
+window.addEventListener("orientationchange", fitStage);
+fitStage();
