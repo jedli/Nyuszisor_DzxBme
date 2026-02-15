@@ -135,23 +135,31 @@ render();
 function fitStage() {
   const stage = document.getElementById("stage");
 
-  // reset scale a valós méréshez
   stage.style.transform = "scale(1)";
 
   const stageWidth = stage.offsetWidth;
   const stageHeight = stage.offsetHeight;
 
-  const viewportWidth = window.innerWidth;
-  const viewportHeight = window.innerHeight;
+  const viewportWidth =
+    window.visualViewport?.width || window.innerWidth;
 
-  const scaleX = viewportWidth / stageWidth;
-  const scaleY = viewportHeight / stageHeight;
+  const viewportHeight =
+    window.visualViewport?.height || window.innerHeight;
 
-  const scale = Math.min(scaleX, scaleY, 1);
+  const scale = Math.min(
+    viewportWidth / stageWidth,
+    viewportHeight / stageHeight,
+    1
+  );
 
   stage.style.transform = `translateX(-50%) scale(${scale})`;
 }
 
-window.addEventListener("resize", fitStage);
-window.addEventListener("orientationchange", fitStage);
-fitStage();
+function fitStageDelayed() {
+  fitStage();
+  setTimeout(fitStage, 120);
+  setTimeout(fitStage, 350);
+}
+
+window.addEventListener("resize", fitStageDelayed);
+window.addEventListener("orientationchange", fitStageDelayed);
