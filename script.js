@@ -171,5 +171,6 @@ function fitStageDelayed() {
   setTimeout(fitStage, 350);
 }
 
+window.addEventListener("load", fitStageDelayed);
 window.addEventListener("resize", fitStageDelayed);
 window.addEventListener("orientationchange", fitStageDelayed);
