@@ -30,15 +30,19 @@ function isSorted() {
 let state = randomBunnies();
 let selected = [];
 let animating = false;
+let finished = false;
 const container = document.getElementById("bunnies");
 
 function render() {
+  success = isSorted();
   container.innerHTML = "";
 
   state.forEach((b,i)=>{
     const div = document.createElement("div");
     div.className="bunny";
     if(selected.includes(i)) div.classList.add("selected");
+    if(finished)
+      div.classList.add(success ? "success" : "fail");
 
     div.onclick = ()=>{
       if(animating) return;
@@ -57,6 +61,12 @@ function render() {
     div.appendChild(check);
     container.appendChild(div);
   });
+}
+
+function finish() {
+  document.getElementById("curtain").classList.add("open");
+  finished = true;
+  render();
 }
 
 function swapAnim(a,b) {
@@ -79,7 +89,7 @@ function swapAnim(a,b) {
 
     if(isSorted()){
       setTimeout(()=>{
-        document.getElementById("curtain").classList.add("open");
+        finish();
       },400);
     }
   },500);
@@ -89,7 +99,7 @@ let compareCount = 0;
 const maxCompare = 15;
 const compareRow = document.getElementById("compareRow");
 
-// előre létrehozunk 15 boxot
+// számláló
 for (let i = 0; i < maxCompare; i++) {
   const box = document.createElement("div");
   box.className = "compareBox";
@@ -97,19 +107,20 @@ for (let i = 0; i < maxCompare; i++) {
 }
 
 function markCompare() {
-  if (compareCount < maxCompare) {
+  if (compareCount <= maxCompare) {
     compareRow.children[compareCount-1].classList.add("active");
   }
 
   // ha elfogyott a 15 jelzés, függöny fel
   if (compareCount >= maxCompare) {
-    document.getElementById("curtain").classList.add("open");
+    finish();
   }
 }
 
-document.getElementById("compareBtn").onclick=()=>{
+document.getElementById("compareBtn").onclick=() => {
   if(selected.length!==2 || animating) return;
   compareCount++;
+  markCompare();
   // document.getElementById("curtain").textContent = `Összehasonlítások: ${compareCount}`;
   let [a, b] = selected;
   if (a > b) [a, b] = [b, a];
@@ -119,7 +130,6 @@ document.getElementById("compareBtn").onclick=()=>{
     selected=[];
     render();
   }
-  markCompare();
 };
 
 document.getElementById("revealBtn").onclick=() => {

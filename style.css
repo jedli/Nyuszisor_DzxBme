@@ -57,7 +57,7 @@ body
 }
 
 .compareBox.active {
-  background: darkred;
+  background: gray;
 }
 
 #bunnies
@@ -105,6 +105,16 @@ body
 .selected .check
 {
   background: limegreen;
+}
+
+.success .check
+{
+  background: limegreen;
+}
+
+.fail .check
+{
+  background: crimson;
 }
 
 #curtain {
