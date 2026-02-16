@@ -165,12 +165,22 @@ function fitStage() {
   stage.style.transform = `translateX(-50%) scale(${scale})`;
 }
 
+let fitTimer = null;
+
 function fitStageDelayed() {
+  if (fitTimer) clearTimeout(fitTimer);
+
   fitStage();
-  setTimeout(fitStage, 120);
-  setTimeout(fitStage, 350);
+
+  fitTimer = setTimeout(() => {
+    fitStage();
+    //setTimeout(fitStage, 250);
+  }, 250);
 }
 
 window.addEventListener("load", fitStageDelayed);
 window.addEventListener("resize", fitStageDelayed);
 window.addEventListener("orientationchange", fitStageDelayed);
+if (window.visualViewport)
+  visualViewport.addEventListener("resize", fitStageDelayed);
+
